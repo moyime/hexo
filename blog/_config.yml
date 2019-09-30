@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
+title: Moyime个人博客
+subtitle: 我也认真敷衍你
 description:
 keywords:
-author: John Doe
-language: en
+author: Moyime
+language: zh-CN
 timezone:
 
 # URL
@@ -73,7 +73,11 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: BlueLake
+
+# 如果你想生成压缩后的css，在（hexo/_config.yml）中添加
+stylus:
+  compress: true
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
