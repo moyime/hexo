@@ -1,77 +1,141 @@
-// var obj={
-//     a: 1,
-//     b: undefined,
-//     c: null,
-//     d: true,
-//     e: "str",
-//     f: function(a,b){
-//         return a+b;
-//     },
-//     g: {
-//         x: 99,
-//         y:{
-//             t: 10,
-//             v:{
-//                 u: 89
-//             }
-//         }
-//     }
-// }
-let mySymbol = Symbol();
-var obj={
-    a: 1,
-    b: "string",
-    c: true,
-    d: undefined,
-    e: null,
-    f:function(){},
-    g:Symbol()
+// 第一版
+function deepCopy1(data) {
+    if (data === null) {
+        return data;
+    }
+    if (typeof data === "object") {
+        let obj = {};
+        for (let key in data) {
+            obj[key] = deepCopy1(data[key]);
+        }
+        return obj;
+    } else {
+        return data;
+    }
 }
-var str=JSON.stringify(obj);
-var obj2=JSON.parse(str);
-console.log(obj);
-console.log(str);
-console.log(obj2);
 
-let arr=[1, true, null, "string", undefined, Symbol(), function(){}];
-let str=JSON.stringify(arr);
+const target1 = {
+    field1: 1,
+    field2: undefined,
+    field3: 'ConardLi',
+    field4: {
+        child: 'child',
+        child2: {
+            child2: 'child2'
+        }
+    }
+};
 
-let mySymbol = Symbol();
-let obj={
-    a: 1,
-    mySymbol: "aaa"
+console.log(deepCopy1(target1));
+
+
+//第二版  考虑数组
+function deepCopy2(data) {
+    if (data === null) {
+        return data;
+    }
+    if (typeof data === "object") {
+        let temp = Array.isArray(data) ? [] : {};
+        for (let key in data) {
+            temp[key] = deepCopy2(data[key]);
+        }
+        return temp;
+        // let temp;
+        // if (Array.isArray(data)) {
+        //     temp = [];
+        //     for (let i = 0; i < data.length; i++) {
+        //         temp.push(deepCopy2(data[i]));
+        //     }
+        // } else {
+        //     temp = {};
+        //     for (let key in data) {
+        //         temp[key] = deepCopy2(data[key]);
+        //     }
+        // }
+        // return temp;
+    } else {
+        return data;
+    }
 }
-let str=JSON.stringify(arr);
 
+const target2 = {
+    field1: 1,
+    field2: undefined,
+    field3: {
+        child: 'child'
+    },
+    field4: [{
+        a: 9,
+        b: {
+            c: 0
+        }
+    }, 4, 8]
+};
+console.log(deepCopy2(target2));
 
-let mySymbol = Symbol();
-let obj={
-    a: 1,
+// 第三版 循环引用
+// WeakMap弱引用 垃圾回收机制会自动回收
+function deepCopy3(data, map = new WeakMap()) {
+    if (data === null) {
+        return null;
+    }
+    if (typeof data === "object") {
+        let temp = Array.isArray(data) ? [] : {};
+        if (map.get(data)) {
+            return map.get(data);
+        }
+        map.set(data, temp);
+        for (let key in data) {
+            temp[key] = deepCopy3(data[key], map);
+        }
+        return temp;
+    } else {
+        return data;
+    }
 }
-obj[mySymbol]="aaa";
-let str=JSON.stringify(obj);
+const target3 = {
+    field1: 1,
+};
+target3.field2 = target3;
+deepCopy3(target3);
 
 
-let obj={
-    a: 1,
-    b: 3
+//模拟遍历提高性能
+function forEach(array, callback) {
+    let index = 0;
+    let length = array.length;
+    while (index < length) {
+        callback(array[index], index);
+        index++;
+    }
 }
-Object.defineProperty(obj, "a",{
-    enumerable: false
-})
-let str=JSON.stringify(obj);
 
+function deepCopy4(data, map = new WeakMap()) {
+    if (data === null) {
+        return null;
+    }
+    if (typeof data === "object") {
+        let isArray = Array.isArray(data);
+        let copyObj = isArray ? [] : {};
+        if (map.get(data)) {
+            return map.get(data);
+        }
+        map.set(data, copyObj);
 
-let obj={
-    a: NaN,
-    b: Infinity,
-    c: -Infinity,
+        let keys = isArray ? undefined : Object.keys(data);
+        forEach(keys || data, (value, key) => {
+            if (keys) {
+                key = value;
+            }
+            copyObj[key] = deepCopy4(data[key], map);
+        })
+        return copyObj;
+    } else {
+        return data;
+    }
 }
-let str=JSON.stringify(obj);  //"{"a":null,"b":null,"c":null}"
-
-
-let err = new Error('出错了');
-let obj={
-    err: err
-}
-let str=JSON.stringify(obj);
+const target4 = {
+    field1: 1,
+};
+target4.field2 = target4;
+deepCopy4(target4);
