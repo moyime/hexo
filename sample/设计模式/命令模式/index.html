@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button type="button" id="btn">按钮</button>
+</body>
+<script>
+    function setCommod($ele, command) {
+        $ele.onclick = function () {
+            command.execute();
+        }
+    }
+
+    const MenuBar = {
+        refresh: function () {
+            console.log("刷新了页面");
+        }
+    }
+
+    function refreshMeunBarCommand(receiver) {
+        return {
+            execute: function () {
+                receiver.refresh();
+            }
+        }
+    }
+    let refresh = refreshMeunBarCommand(MenuBar);
+    let ele = document.getElementById("btn");
+    setCommod(ele, refresh);
+</script>
+
+</html>

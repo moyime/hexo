@@ -1,3 +1,6 @@
+/*防抖动：触发事件，在事件触发后n秒内没有再触发该事件才执行。
+如果在一个事件触发的n秒内 又触发了该事件  就会以新的时间为准
+*/
 var count = 1;
 var container = document.getElementById("container");
 

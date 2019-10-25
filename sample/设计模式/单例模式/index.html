@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button type="button" id="btn">add</button>
+</body>
+<script>
+    function createPop() {
+        let pop = document.getElementById("pop");
+        if (pop) {
+            return pop;
+        }
+        let div = document.createElement("div");
+        div.id = "pop";
+        div.innerHTML = "弹出框";
+        div.style.display = "none";
+        document.body.appendChild(div);
+        return div;
+    }
+
+    function getSingle(fn) {
+        let result;
+        return function () {
+            return result || fn.apply(this, arguments);
+        }
+    }
+    const createSingleLoginLayer = getSingle(createPop)
+
+    document.getElementById('btn').onclick = function () {
+        let $ele = createSingleLoginLayer();
+        console.log($ele);
+        if ($ele.style.display == "none") {
+            $ele.style.display = "block";
+        } else {
+            $ele.style.display = "none";
+        }
+    }
+    // document.getElementById("btn").onclick = getSingle(createPop);
+</script>
+
+</html>
