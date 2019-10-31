@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Grid</title>
+    <style>
+        .grid {
+            display: flex;
+            width: 800px;
+            line-height: 40px;
+            text-align: center;
+            border: 1px solid red;
+        }
+
+        .grid-cell {
+            flex: 1;
+            background: #eee;
+        }
+
+        .grid-cell-item-2 {
+            flex: 0 0 20%;
+        }
+
+        .grid-cell-item-5 {
+            flex: 0 0 50%;
+        }
+
+        .grid-cell-item {
+            flex: 1
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid">
+        <div class="grid-cell">最简单的网格布局，就是平均分布。在容器里面平均分配空间，跟上面的骰子布局很像，但是需要设置项目的自动缩放。</div>
+        <div class="grid-cell">
+            最简单的网格布局，就是平均分布。在容器里面平均分配空间，跟上面的骰子布局很像，但是需要设置项目的自动缩放。最简单的网格布局，就是平均分布。在容器里面平均分配空间，跟上面的骰子布局很像，但是需要设置项目的自动缩放。
+        </div>
+        <div class="grid-cell">
+            最简单的网格布局，就是平均分布。在容器里面平均分配空间，跟上面的骰子布局很像，但是需要设置项目的自动缩放。最简单的网格布局，就是平均分布。在容器里面平均分配空间，跟上面的骰子布局很像，但是需要设置项目的自动缩放。最简单的网格布局，就是平均分布。在容器里面平均分配空间，跟上面的骰子布局很像，但是需要设置项目的自动缩放。
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="grid-cell-item-5">50%</div>
+        <div class="grid-cell-item-2">20%</div>
+        <div class="grid-cell-item">auto</div>
+        <div class="grid-cell-item">auto</div>
+    </div>
+</body>
+
+</html>

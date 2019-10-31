@@ -1,0 +1,112 @@
+.first-face {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.second-face {
+    display: flex;
+    justify-content: space-between;
+    /*主轴为垂直方向，起点在上沿。*/
+    /* flex-direction: column; */
+    /*主轴对齐方式*/
+    /* justify-content: space-between; */
+    /*交叉轴对齐方式*/
+    /* align-items: center; */
+}
+
+.second-face .pip:nth-child(2) {
+    align-self: flex-end;
+}
+
+.three-face {
+    display: flex;
+}
+
+.three-face .pip:nth-child(2) {
+    align-self: center;
+}
+
+.three-face .pip:nth-child(3) {
+    align-self: flex-end;
+}
+
+.four-face {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-content: space-between;
+}
+
+.four2-face {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.four2-face1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.five-face {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.five-face1,
+.five-face3 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.five-face2 {
+    display: flex;
+    justify-content: center;
+}
+
+
+/* .six-face {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+} */
+.six-face {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+[class$="face"] {
+    padding: 4px;
+
+    background-color: #e7e7e7;
+    width: 104px;
+    height: 104px;
+    object-fit: contain;
+
+    box-shadow:
+        inset 0 5px white,
+        inset 0 -5px #bbb,
+        inset 5px 0 #d7d7d7,
+        inset -5px 0 #d7d7d7;
+
+    border-radius: 10%;
+}
+
+.pip {
+    display: block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin: 4px;
+
+    background-color: #333;
+    box-shadow: inset 0 3px #111, inset 0 -3px #555;
+}
