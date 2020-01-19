@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>左右定宽，中间自适应</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: 200px auto 200px;
+            grid-template-rows: 60px auto 60px;
+            grid-template-areas: "head head head"
+                "left center right"
+                "foot foot foot";
+        }
+
+        .header {
+            background: #ccc;
+            grid-area: head;
+        }
+
+        .left {
+            background: yellowgreen;
+            grid-area: left;
+        }
+
+        .center {
+            background: #eee;
+            grid-area: center;
+        }
+
+        .right {
+            background: greenyellow;
+            grid-area: right;
+        }
+
+        .footer {
+            background: #ccc;
+            grid-area: foot;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">header</div>
+        <div class="left">left</div>
+        <div class="center">center</div>
+        <div class="right">right</div>
+        <div class="footer">footer</div>
+    </div>
+</body>
+
+</html>

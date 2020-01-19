@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>左定宽，右适应</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .wrap {
+            background-color: orange;
+            display: grid;
+            /* grid-template-columns: 200px auto; */
+            grid-template-columns: 200px 1fr;
+        }
+
+        .left {
+            background: greenyellow;
+        }
+
+        .right {
+            background: orchid;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="left">
+            随着秋季的到来，长沙的雨水多了。经常毫无预兆的下起大雨，很多同学便会因为忘带雨伞而淋湿和滞留，这给同学们带来了很大的不便。为了让全校师生不再饱受雨天无伞的困扰，林科大涉外学生会决定免费为广大师生提供雨伞，举办“爱心雨伞”活动。通过爱心雨伞的传递，让大家在雨天也能感受到不一样的温暖。
+        </div>
+        <div class="right">
+            随着秋季的到来，长沙的雨水多了</div>
+    </div>
+</body>
+
+</html>

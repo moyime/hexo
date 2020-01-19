@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>可拖拽的元素</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .box {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+</body>
+<script>
+    window.onload = function () {
+        let $ele = document.getElementsByClassName("box")[0];
+        addHandler($ele, "mousedown", mouseDown);
+        let maxX = document.documentElement.clientWidth - $ele.offsetWidth;
+        let maxY = document.documentElement.clientHeight - $ele.offsetHeight;
+
+        let press = false;
+        let x, y; //鼠标点击位置距离被点击元素的位置
+        function mouseDown(event) {
+            event = event || window.event;
+            press = true;
+            x = event.clientX - $ele.offsetLeft;
+            y = event.clientY - $ele.offsetTop;
+            addHandler(document, "mousemove", mouseMove);
+            addHandler(document, "mouseup", mouseUp);
+        }
+
+        function mouseMove(event) {
+            if (press) {
+                event = event || window.event;
+                let left = event.clientX - x;
+                let top = event.clientY - y;
+                left = Math.max(0, Math.min(left, maxX));
+                top = Math.max(0, Math.min(top, maxY));
+                $ele.style.left = left + "px";
+                $ele.style.top = top + "px";
+            }
+        }
+
+        function mouseUp() {
+            press = false;
+            removeHandler(document, "mousemove", mouseMove);
+            removeHandler(document, "mouseup", mouseUp);
+        }
+    }
+</script>
+<script>
+    function addHandler(element, type, handler) {
+        if (element.addEventListener) {
+            element.addEventListener(type, handler, false);
+        } else if (element.attachEvent) {
+            element.addEventListener("on" + type, handler);
+        } else {
+            element["on" + type] = handler;
+        }
+    }
+
+    function removeHandler(element, type, handler) {
+        if (element.removeEventListener) {
+            /*Chrome*/
+            element.removeEventListener(type, handler, false);
+        } else if (element.deattachEvent) {
+            /*IE*/
+            element.deattachEvent("on" + type, handler);
+        } else {
+            element["on" + type] = null;
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>左右定宽，中间自适应</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+        }
+
+        .left,
+        .right,
+        .center {
+            float: left;
+            height: 500px;
+        }
+
+        .left {
+            width: 300px;
+            background: #000000;
+        }
+
+        .right {
+            width: 400px;
+            background: #00FFFF;
+        }
+
+        .center {
+            width: 100%;
+            background: #93c759;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="center">center</div>
+        <div class="left">left</div>
+        <div class="right">right</div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>左右定宽，中间自适应</title>
+    <style>
+        .header {
+            background: orange;
+        }
+
+        .parent {
+            width: 100%;
+            overflow: auto;
+            height: 500px;
+        }
+
+        .center {
+            float: left;
+            width: 100%;
+            height: 500px;
+        }
+
+        .center_inbox {
+            margin: auto 200px;
+            background: yellow;
+            height: 500px;
+        }
+
+        .left {
+            float: left;
+            width: 200px;
+            background: yellowgreen;
+            height: 500px;
+            margin-left: -100%;
+        }
+
+        .right {
+            float: left;
+            width: 200px;
+            background: greenyellow;
+            height: 500px;
+            margin-left: -200px;
+        }
+
+        .footer {
+            background: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">header</div>
+    <!--中间栏需要放在前面-->
+    <div class="parent">
+        <div class="center">
+            <div class="center_inbox">中间自适应</div>
+        </div>
+        <div class="left">左列定宽</div>
+        <div class="right">右列定宽</div>
+    </div>
+    <div class="footer">footer</div>
+</body>
+
+</html>
