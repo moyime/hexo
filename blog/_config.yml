@@ -83,4 +83,4 @@ stylus:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://github.com/moyime/moyime.github.io
+  repository: https://github.com/zhangrong915/zhangrong915.github.io
